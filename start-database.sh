@@ -32,7 +32,9 @@ set -a
 source .env
 
 DB_PASSWORD=$(echo "$DATABASE_URL" | awk -F':' '{print $3}' | awk -F'@' '{print $1}')
-DB_PORT=$(echo "$DATABASE_URL" | awk -F':' '{print $4}' | awk -F'\/' '{print $1}')
+# DB_PORT=$(echo "$DATABASE_URL" | awk -F':' '{print $4}' | awk -F'\/' '{print $1}')
+# ローカルとdockerポートを分けるため
+DB_PORT=5433
 
 if [ "$DB_PASSWORD" = "password" ]; then
   echo "You are using the default database password"
